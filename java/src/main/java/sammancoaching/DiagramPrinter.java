@@ -10,19 +10,16 @@ public class DiagramPrinter {
     public static final String SPREADSHEET = "Spreadsheet";
     public static final String PDF = "PDF";
 
-    public boolean printSummary(FlowchartDiagram diagram, String language, StringBuilder summaryText) {
-
-        DiagramWrapper diagramWrapper = new DiagramWrapper(diagram);
-
+    public boolean printSummary(SummarizableDiagram diagram, String language, StringBuilder summaryText) {
         if (diagram == null) {
             summaryText.setLength(0); // Clear text
             return false;
         }
 
-        return printSummary(diagramWrapper, language, summaryText);
+        return buildSummary(diagram, language, summaryText);
     }
 
-    private static boolean printSummary(DiagramWrapper diagramWrapper, String language, StringBuilder summaryText) {
+    private static boolean buildSummary(SummarizableDiagram diagramWrapper, String language, StringBuilder summaryText) {
         DiagramSummary summary = new DiagramSummary(language);
         summary.addTitle(diagramWrapper.getName(), diagramWrapper.getSerialNumber());
         summary.addHeader(diagramWrapper.getSummaryInformation());
