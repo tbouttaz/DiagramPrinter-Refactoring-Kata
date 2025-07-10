@@ -1,7 +1,6 @@
 package sammancoaching;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
@@ -12,15 +11,22 @@ public class DiagramPrinter {
     public static final String PDF = "PDF";
 
     public boolean printSummary(FlowchartDiagram diagram, String language, StringBuilder summaryText) {
+
+        DiagramWrapper diagramWrapper = new DiagramWrapper(diagram);
+
         if (diagram == null) {
             summaryText.setLength(0); // Clear text
             return false;
         }
 
+        return printSummary(diagramWrapper, language, summaryText);
+    }
+
+    private static boolean printSummary(DiagramWrapper diagramWrapper, String language, StringBuilder summaryText) {
         DiagramSummary summary = new DiagramSummary(language);
-        summary.addTitle(diagram.getName(), diagram.getSerialNumber());
-        summary.addHeader(diagram.getSummaryInformation());
-        summary.addImage(diagram.getFlowchartThumbnail());
+        summary.addTitle(diagramWrapper.getName(), diagramWrapper.getSerialNumber());
+        summary.addHeader(diagramWrapper.getSummaryInformation());
+        summary.addImage(diagramWrapper.getFlowchartThumbnail());
         summaryText.append(summary.export());
         return true;
     }

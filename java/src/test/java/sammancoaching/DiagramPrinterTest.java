@@ -17,6 +17,7 @@ public class DiagramPrinterTest {
         DiagramPrinter printer = new DiagramPrinter();
         StringBuilder output = new StringBuilder();
         boolean result = printer.printSummary(null, "swedish", output);
+        assertEquals("", output.toString());
         assertFalse(result);
     }
 
