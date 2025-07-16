@@ -38,5 +38,11 @@ public class DiagramPrinterTest {
                 filename""", output.toString());
         assertTrue(result);
     }
+
+    @Test
+    void printPdf() {
+        //TODO NEXT
+        new DiagramPrinter().printPdf(new MockDiagramWrapper(), "/folder/to/diagram", "swedish", null);
+    }
 }
 

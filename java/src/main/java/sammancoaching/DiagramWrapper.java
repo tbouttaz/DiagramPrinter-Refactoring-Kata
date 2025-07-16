@@ -8,6 +8,13 @@ public class DiagramWrapper implements DiagramWrapperInterface {
     }
 
     @Override
+    public boolean copyPdf(DiagramWrapperInterface diagram, DiagramMetadata info, String targetFilename) {
+        return true;
+        //FIXME
+//        return diagram.getFlowchartAsPdf().copyFile(info.fullFilename, targetFilename, true);
+    }
+
+    @Override
     public String getName() {
         return diagram.getName();
     }
@@ -25,5 +32,9 @@ public class DiagramWrapper implements DiagramWrapperInterface {
     @Override
     public PngDocument getFlowchartThumbnail() {
         return diagram.getFlowchartThumbnail();
+    }
+
+    public SpreadsheetDocument getFlowchartDataAsSpreadsheet() {
+        return diagram.getFlowchartDataAsSpreadsheet();
     }
 }
